@@ -6,7 +6,26 @@ function startDataUpload()
 	var surname = document.getElementById("surname").value;
 	var module = document.getElementById("module").value;
 	var postString = "name="+name+"&surname="+surname+"&module="+module;
-	alert (postString);
+	var checkString = "";
+	for(var i=1;i<5;i++)
+	{
+		if (document.getElementById("check"+i).checked === true)
+		{
+			checkString = checkString + document.getElementById("check"+i).value + "||";
+		}
+	}
+	postString = postString + "&modulelist=" + checkString;
+	if (document.getElementById("morning").checked)
+	{
+		postString = postString + "&lecturetime=morning";
+	}
+	if (document.getElementById("afternoon").checked)
+	{
+		postString = postString + "&lecturetime=afternoon";
+	}
+	var language = document.getElementById("languageselectbox").value;
+	postString = postString + "&language=" + language;
+	alert(postString);
 	processData(postString);
 }
 
